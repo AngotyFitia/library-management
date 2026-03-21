@@ -13,19 +13,19 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Categorie {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String nom;
+    private String name;
 
     @Column(columnDefinition = "TEXT")
     private String description;
 
     @ManyToMany(mappedBy = "categories")
     @Builder.Default
-    private Set<Livre> livres = new HashSet<>();
+    private Set<Book> books = new HashSet<>();
 }

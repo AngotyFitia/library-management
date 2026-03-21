@@ -19,7 +19,7 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
-    private String nom;
+    private String name;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -33,8 +33,8 @@ public class User {
 
     @Column(nullable = false)
     @Builder.Default
-    private boolean actif = true;
+    private boolean active = true;
 
     @Column(nullable = false)
-    private LocalDateTime dateCreation;
+    private LocalDateTime createdAt;
 }

@@ -6,38 +6,33 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "emprunts")
+@Table(name = "loans")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Emprunt {
+public class Loan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private LocalDateTime dateEmprunt;
+    private LocalDateTime loanDate;
 
-    /**
-     * Null tant que le livre n'est pas rendu.
-     */
-    private LocalDateTime dateRetour;
+    private LocalDateTime returnDate;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @Builder.Default
-    private EmpruntStatut statut = EmpruntStatut.EN_COURS;
-
-    // === Relations ===
+    private LoanStatus status = LoanStatus.IN_PROGRESS;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "utilisateur_id", nullable = false)
-    private User utilisateur;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "livre_id", nullable = false)
-    private Livre livre;
+    @JoinColumn(name = "book_id", nullable = false)
+    private Book book;
 }

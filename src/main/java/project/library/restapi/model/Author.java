@@ -7,28 +7,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "auteurs")
+@Table(name = "authors")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Auteur {
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String nom;
+    private String lastName;
 
     @Column(nullable = false)
-    private String prenom;
+    private String firstName;
 
     @Column(columnDefinition = "TEXT")
-    private String biographie;
+    private String biography;
 
-    @OneToMany(mappedBy = "auteur", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
-    private List<Livre> livres = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 }
