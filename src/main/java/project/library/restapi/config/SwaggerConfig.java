@@ -19,13 +19,10 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .info(new Info()
                         .title("Library Management API")
-                        .description("API REST de gestion de bibliothèque — MBDS 2025-2026")
+                        .description("Library Management REST API — MBDS 2025-2026")
                         .version("1.0.0")
-                        .contact(new Contact()
-                                .name("Équipe MBDS")
-                        )
+                        .contact(new Contact().name("MBDS Team"))
                 )
-                // Applique le schéma JWT Bearer à tous les endpoints par défaut
                 .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
                 .components(new Components()
                         .addSecuritySchemes(securitySchemeName, new SecurityScheme()
@@ -33,7 +30,7 @@ public class SwaggerConfig {
                                 .type(SecurityScheme.Type.HTTP)
                                 .scheme("bearer")
                                 .bearerFormat("JWT")
-                                .description("Collez ici le token JWT obtenu via POST /api/auth/login")
+                                .description("Paste the JWT token obtained from POST /api/auth/login")
                         )
                 );
     }

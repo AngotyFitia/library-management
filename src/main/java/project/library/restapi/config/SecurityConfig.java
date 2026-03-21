@@ -29,42 +29,30 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final CustomUserDetailsService userDetailsService;
 
-    /**
-     * Endpoints publics (aucun token requis).
-     */
     private static final String[] PUBLIC_ENDPOINTS = {
             "/api/auth/login",
             "/api/auth/register",
-            // Swagger / OpenAPI
             "/v3/api-docs/**",
             "/swagger-ui/**",
             "/swagger-ui.html",
             "/swagger-resources/**",
             "/webjars/**",
-            // H2 Console (développement uniquement)
             "/h2-console/**"
     };
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                // Pas de CSRF pour une API REST stateless
                 .csrf(AbstractHttpConfigurer::disable)
-                // Autoriser les frames pour la console H2
                 .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
-                // Pas de session HTTP côté serveur
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                // Règles d'autorisation
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(PUBLIC_ENDPOINTS).permitAll()
-                        // /api/auth/me est accessible à tout utilisateur authentifié
                         .requestMatchers(HttpMethod.GET, "/api/auth/me").authenticated()
-                        // Statistiques et gestion utilisateurs → admin uniquement
                         .requestMatchers("/api/stats/**").hasRole("ADMIN")
-                        .requestMatchers("/api/utilisateurs/**").hasRole("ADMIN")
-                        // Tout le reste nécessite une authentification
+                        .requestMatchers("/api/users/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider())
