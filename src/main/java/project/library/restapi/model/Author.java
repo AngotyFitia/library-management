@@ -7,48 +7,39 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.util.List;
 
-
 @Entity
-public class User {
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String name;
-    private String email;
-    private String password;
-    private String role; // admin or user
+    private String biography;
 
-    @OneToMany(mappedBy = "users")
-    private List<Borrow> borrows;
+    @OneToMany(mappedBy = "author")
+    private List<Book> books;
 
-    public User() {}
+
+    public Author() {}
     public Long getId() {
         return id;
     }
     public String getName() {
         return name;
     }
-    public String getEmail() {
-        return email;
+    public String getBiography() {
+        return biography;
     }
-    public String getPassword() {
-        return password;
-    }
-    public String getRole() {
-        return role;
-    }
+
     public void setId(Long id) {
         this.id = id;
     }
     public void setName(String name) {
         this.name = name;
     }
-    public void setEmail(String password) {
-        this.password = password;
+    public void setBiography(String biography) {
+        this.biography = biography;
     }
-    public void setPassword(String role) {
-        this.role = role;
-    }
+    
 }

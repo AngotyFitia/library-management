@@ -1,9 +1,6 @@
 package project.library.restapi.repository;
-import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import project.library.restapi.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User,Long> {
-    Optional<User> findByEmailAndPassword(String email,String password);
-}
+public interface UserRepository extends JpaRepository<User, Long> {}
