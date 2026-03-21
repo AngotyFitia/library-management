@@ -5,9 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * Réponse renvoyée après une authentification réussie (login ou register).
- */
 @Getter
 @Builder
 @NoArgsConstructor
@@ -15,9 +12,11 @@ import lombok.NoArgsConstructor;
 public class AuthResponse {
 
     private String token;
+
     @Builder.Default
     private String type = "Bearer";
-    private String nom;
+
+    private String name;
     private String email;
     private String role;
 }

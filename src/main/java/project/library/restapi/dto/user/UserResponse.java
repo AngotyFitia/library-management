@@ -9,9 +9,6 @@ import project.library.restapi.model.User;
 
 import java.time.LocalDateTime;
 
-/**
- * Représentation publique d'un utilisateur (sans mot de passe).
- */
 @Getter
 @Builder
 @NoArgsConstructor
@@ -19,22 +16,22 @@ import java.time.LocalDateTime;
 public class UserResponse {
 
     private Long id;
-    private String nom;
+    private String name;
     private String email;
     private String role;
-    private boolean actif;
+    private boolean active;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime dateCreation;
+    private LocalDateTime createdAt;
 
     public static UserResponse from(User user) {
         return UserResponse.builder()
                 .id(user.getId())
-                .nom(user.getNom())
+                .name(user.getName())
                 .email(user.getEmail())
                 .role(user.getRole().name())
-                .actif(user.isActif())
-                .dateCreation(user.getDateCreation())
+                .active(user.isActive())
+                .createdAt(user.getCreatedAt())
                 .build();
     }
 }
