@@ -29,13 +29,8 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final CustomUserDetailsService userDetailsService;
 
-    /**
-     * Authentifie un utilisateur et retourne un JWT.
-     * Lance BadCredentialsException si les identifiants sont incorrects (géré par GlobalExceptionHandler).
-     */
     @Transactional(readOnly = true)
     public AuthResponse login(LoginRequest request) {
-        // Délègue la vérification email + mot de passe à Spring Security
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
@@ -47,22 +42,19 @@ public class AuthService {
         return buildAuthResponse(token, user);
     }
 
-    /**
-     * Inscrit un nouvel utilisateur avec le rôle USER par défaut.
-     */
     @Transactional
     public AuthResponse register(RegisterRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new BusinessException("Un compte existe déjà avec cet email : " + request.getEmail());
+            throw new BusinessException("Email already in use: " + request.getEmail());
         }
 
         User user = User.builder()
-                .nom(request.getNom())
+                .name(request.getName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
-                .actif(true)
-                .dateCreation(LocalDateTime.now())
+                .active(true)
+                .createdAt(LocalDateTime.now())
                 .build();
 
         userRepository.save(user);
@@ -77,7 +69,7 @@ public class AuthService {
         return AuthResponse.builder()
                 .token(token)
                 .type("Bearer")
-                .nom(user.getNom())
+                .name(user.getName())
                 .email(user.getEmail())
                 .role(user.getRole().name())
                 .build();

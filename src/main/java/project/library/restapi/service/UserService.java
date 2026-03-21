@@ -23,22 +23,16 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    /**
-     * Liste paginée avec filtres optionnels (nom et/ou rôle).
-     */
     @Transactional(readOnly = true)
-    public Page<UserResponse> findAll(String nom, Role role, Pageable pageable) {
-        if (nom != null && !nom.isBlank() && role != null) {
-            return userRepository.findByNomContainingIgnoreCaseAndRole(nom, role, pageable)
-                    .map(UserResponse::from);
+    public Page<UserResponse> findAll(String name, Role role, Pageable pageable) {
+        if (name != null && !name.isBlank() && role != null) {
+            return userRepository.findByNameContainingIgnoreCaseAndRole(name, role, pageable).map(UserResponse::from);
         }
-        if (nom != null && !nom.isBlank()) {
-            return userRepository.findByNomContainingIgnoreCase(nom, pageable)
-                    .map(UserResponse::from);
+        if (name != null && !name.isBlank()) {
+            return userRepository.findByNameContainingIgnoreCase(name, pageable).map(UserResponse::from);
         }
         if (role != null) {
-            return userRepository.findByRole(role, pageable)
-                    .map(UserResponse::from);
+            return userRepository.findByRole(role, pageable).map(UserResponse::from);
         }
         return userRepository.findAll(pageable).map(UserResponse::from);
     }
@@ -48,55 +42,44 @@ public class UserService {
         return UserResponse.from(getOrThrow(id));
     }
 
-    /**
-     * Récupère l'utilisateur actuellement connecté via son email (extrait du JWT).
-     */
     @Transactional(readOnly = true)
     public UserResponse findByEmail(String email) {
         return UserResponse.from(
                 userRepository.findByEmail(email)
-                        .orElseThrow(() -> new ResourceNotFoundException("Utilisateur introuvable : " + email))
+                        .orElseThrow(() -> new ResourceNotFoundException("User not found: " + email))
         );
     }
 
-    /**
-     * Création d'un utilisateur par l'admin (le rôle est spécifiable).
-     */
     @Transactional
     public UserResponse create(UserRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new BusinessException("Un compte existe déjà avec cet email : " + request.getEmail());
+            throw new BusinessException("Email already in use: " + request.getEmail());
         }
         if (request.getPassword() == null || request.getPassword().isBlank()) {
-            throw new BusinessException("Le mot de passe est obligatoire à la création");
+            throw new BusinessException("Password is required");
         }
 
         User user = User.builder()
-                .nom(request.getNom())
+                .name(request.getName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole() != null ? request.getRole() : Role.USER)
-                .actif(true)
-                .dateCreation(LocalDateTime.now())
+                .active(true)
+                .createdAt(LocalDateTime.now())
                 .build();
 
         return UserResponse.from(userRepository.save(user));
     }
 
-    /**
-     * Mise à jour d'un utilisateur existant.
-     * Le mot de passe n'est re-hashé que s'il est fourni.
-     */
     @Transactional
     public UserResponse update(Long id, UserRequest request) {
         User user = getOrThrow(id);
 
-        // Vérification de l'unicité de l'email si changé
         if (!user.getEmail().equals(request.getEmail()) && userRepository.existsByEmail(request.getEmail())) {
-            throw new BusinessException("Cet email est déjà utilisé par un autre compte");
+            throw new BusinessException("Email already used by another account");
         }
 
-        user.setNom(request.getNom());
+        user.setName(request.getName());
         user.setEmail(request.getEmail());
 
         if (request.getPassword() != null && !request.getPassword().isBlank()) {
@@ -112,13 +95,13 @@ public class UserService {
     @Transactional
     public void delete(Long id) {
         if (!userRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Utilisateur", id);
+            throw new ResourceNotFoundException("User", id);
         }
         userRepository.deleteById(id);
     }
 
     private User getOrThrow(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Utilisateur", id));
+                .orElseThrow(() -> new ResourceNotFoundException("User", id));
     }
 }

@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import project.library.restapi.dto.stats.EmpruntParCategorieDTO;
-import project.library.restapi.dto.stats.TopAuteurDTO;
-import project.library.restapi.repository.EmpruntRepository;
+import project.library.restapi.dto.stats.LoanByCategoryDTO;
+import project.library.restapi.dto.stats.TopAuthorDTO;
+import project.library.restapi.repository.LoanRepository;
 
 import java.util.List;
 
@@ -14,23 +14,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StatsService {
 
-    private final EmpruntRepository empruntRepository;
+    private final LoanRepository loanRepository;
 
-    /**
-     * Retourne le nombre d'emprunts par catégorie, trié par volume décroissant.
-     */
     @Transactional(readOnly = true)
-    public List<EmpruntParCategorieDTO> getEmpruntsParCategorie() {
-        return empruntRepository.countEmpruntsParCategorie();
+    public List<LoanByCategoryDTO> getLoansByCategory() {
+        return loanRepository.countLoansByCategory();
     }
 
-    /**
-     * Retourne les auteurs les plus populaires (livres les plus empruntés).
-     *
-     * @param limit nombre maximal de résultats à retourner
-     */
     @Transactional(readOnly = true)
-    public List<TopAuteurDTO> getTopAuteurs(int limit) {
-        return empruntRepository.findTopAuteurs(PageRequest.of(0, limit));
+    public List<TopAuthorDTO> getTopAuthors(int limit) {
+        return loanRepository.findTopAuthors(PageRequest.of(0, limit));
     }
 }
