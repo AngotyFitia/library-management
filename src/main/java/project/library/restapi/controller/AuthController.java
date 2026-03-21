@@ -20,32 +20,29 @@ import project.library.restapi.service.UserService;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
-@Tag(name = "Authentification", description = "Login, inscription et profil de l'utilisateur connecté")
+@Tag(name = "Authentication")
 public class AuthController {
 
     private final AuthService authService;
     private final UserService userService;
 
     @PostMapping("/login")
-    @Operation(summary = "Connexion", description = "Authentifie avec email + mot de passe et retourne un JWT")
+    @Operation(summary = "Login", description = "Authenticate with email and password, returns a JWT")
     public ResponseEntity<ApiResponse<AuthResponse>> login(@Valid @RequestBody LoginRequest request) {
-        AuthResponse response = authService.login(request);
-        return ResponseEntity.ok(ApiResponse.success("Connexion réussie", response));
+        return ResponseEntity.ok(ApiResponse.success("Login successful", authService.login(request)));
     }
 
     @PostMapping("/register")
-    @Operation(summary = "Inscription", description = "Crée un nouveau compte avec le rôle USER par défaut")
+    @Operation(summary = "Register", description = "Create a new account with USER role by default")
     public ResponseEntity<ApiResponse<AuthResponse>> register(@Valid @RequestBody RegisterRequest request) {
-        AuthResponse response = authService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success("Compte créé avec succès", response));
+                .body(ApiResponse.success("Account created successfully", authService.register(request)));
     }
 
     @GetMapping("/me")
-    @Operation(summary = "Profil courant", description = "Retourne les informations de l'utilisateur connecté")
+    @Operation(summary = "Current user", description = "Returns the authenticated user's profile")
     @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<ApiResponse<UserResponse>> me(Authentication authentication) {
-        UserResponse user = userService.findByEmail(authentication.getName());
-        return ResponseEntity.ok(ApiResponse.success(user));
+        return ResponseEntity.ok(ApiResponse.success(userService.findByEmail(authentication.getName())));
     }
 }

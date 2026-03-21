@@ -8,12 +8,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-/**
- * Wrapper générique pour toutes les réponses de l'API.
- * Tous les endpoints retournent ce type pour une structure cohérente.
- *
- * @param <T> type de la donnée contenue dans la réponse
- */
 @Getter
 @Builder
 @NoArgsConstructor
@@ -27,8 +21,6 @@ public class ApiResponse<T> {
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @Builder.Default
     private LocalDateTime timestamp = LocalDateTime.now();
-
-    // ===== Factories =====
 
     public static <T> ApiResponse<T> success(T data) {
         return ApiResponse.<T>builder()
