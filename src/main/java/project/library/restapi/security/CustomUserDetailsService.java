@@ -11,10 +11,6 @@ import project.library.restapi.repository.UserRepository;
 
 import java.util.List;
 
-/**
- * Implémentation de UserDetailsService utilisée par Spring Security.
- * Charge un utilisateur depuis la base par son email (qui est notre "username").
- */
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
@@ -24,16 +20,15 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("Utilisateur introuvable : " + email));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
 
-        if (!user.isActif()) {
-            throw new UsernameNotFoundException("Compte désactivé : " + email);
+        if (!user.isActive()) {
+            throw new UsernameNotFoundException("Account disabled: " + email);
         }
 
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getEmail())
                 .password(user.getPassword())
-                // Spring Security attend "ROLE_USER" ou "ROLE_ADMIN"
                 .authorities(List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().name())))
                 .build();
     }

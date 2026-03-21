@@ -17,10 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-/**
- * Service responsable de la génération, validation et extraction des JWT.
- * Utilise JJWT 0.12.x avec l'algorithme HS256.
- */
 @Service
 public class JwtService {
 
@@ -29,8 +25,6 @@ public class JwtService {
 
     @Value("${app.jwt.expiration}")
     private long expiration;
-
-    // ===== Génération =====
 
     public String generateToken(UserDetails userDetails) {
         List<String> roles = userDetails.getAuthorities().stream()
@@ -53,8 +47,6 @@ public class JwtService {
                 .compact();
     }
 
-    // ===== Validation =====
-
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
@@ -63,8 +55,6 @@ public class JwtService {
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
-
-    // ===== Extraction des claims =====
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -86,24 +76,15 @@ public class JwtService {
                 .getPayload();
     }
 
-    // ===== Clé de signature =====
-
     private SecretKey getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secret);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    /**
-     * Retourne la durée de validité du token en millisecondes (pour info client).
-     */
     public long getExpiration() {
         return expiration;
     }
 
-    /**
-     * Vérifie si le token est structurellement valide (sans vérifier l'utilisateur en base).
-     * Utilisé dans le filtre JWT pour ne pas lever d'exception non gérée.
-     */
     public boolean isTokenStructurallyValid(String token) {
         try {
             extractAllClaims(token);
