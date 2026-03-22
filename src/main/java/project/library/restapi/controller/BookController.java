@@ -1,9 +1,11 @@
 package project.library.restapi.controller;
 
+import project.library.restapi.dto.books.BookDTO;
 import project.library.restapi.model.Book;
 import project.library.restapi.service.BookService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,8 +25,8 @@ public class BookController {
     }
 
     @PostMapping
-    public Book create(@RequestBody Book book) {
-        return service.save(book);
+    public BookDTO create(@Valid @RequestBody BookDTO dto) {
+        return service.save(dto);
     }
 
     @DeleteMapping("/{id}")

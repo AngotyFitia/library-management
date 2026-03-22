@@ -2,6 +2,7 @@ package project.library.restapi.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import project.library.restapi.model.Author;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

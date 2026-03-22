@@ -14,7 +14,6 @@ public class BorrowController {
 
     @PostMapping("/{bookId}")
     public Borrow borrowBook(@PathVariable Long bookId) {
-        // temporary user (no JWT yet)
         User user = new User();
         user.setId(1L);
         return service.borrowBook(bookId, user);

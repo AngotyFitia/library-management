@@ -1,5 +1,6 @@
 package project.library.restapi.service;
 
+import project.library.restapi.dto.books.CategoryDTO;
 import project.library.restapi.model.Category;
 import project.library.restapi.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,10 @@ public class CategoryService {
         return repository.findAll();
     }
 
-    public Category save(Category category) {
+    public Category save(CategoryDTO dto) {
+        Category category = new Category();
+        category.setName(dto.getName());
+        category.setDescription(dto.getDescription());
         return repository.save(category);
     }
 }
