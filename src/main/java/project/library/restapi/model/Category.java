@@ -2,12 +2,14 @@ package project.library.restapi.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import java.util.List;
 
 @Entity
+@Table(name = "categories")
 public class Category {
 
     @Id

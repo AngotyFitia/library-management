@@ -5,10 +5,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
 import java.util.List;
 
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -20,7 +23,7 @@ public class User {
     private String password;
     private String role; // admin or user
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "user")
     private List<Borrow> borrows;
 
     public User() {}
@@ -45,10 +48,13 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-    public void setEmail(String password) {
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public void setPassword(String password) {
         this.password = password;
     }
-    public void setPassword(String role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }
