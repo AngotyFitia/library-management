@@ -1,0 +1,34 @@
+package project.library.restapi.controller;
+
+import project.library.restapi.model.Book;
+import project.library.restapi.service.BookService;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
+@RestController
+@RequestMapping("/books")
+public class BookController {
+    @Autowired
+    private BookService service;
+
+    @GetMapping
+    public List<Book> getAll() {
+        return service.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Book getById(@PathVariable Long id) {
+        return service.findById(id);
+    }
+
+    @PostMapping
+    public Book create(@RequestBody Book book) {
+        return service.save(book);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
+}
