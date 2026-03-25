@@ -5,9 +5,7 @@ import lombok.*;
 import project.library.restapi.model.Author;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -48,7 +46,4 @@ public class Book {
     @Builder.Default
     private Set<Category> categories = new HashSet<>();
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Builder.Default
-    private List<Loan> loans = new ArrayList<>();
 }

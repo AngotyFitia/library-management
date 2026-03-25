@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.library.restapi.dto.stats.LoanByCategoryDTO;
 import project.library.restapi.dto.stats.TopAuthorDTO;
-import project.library.restapi.repository.LoanRepository;
+import project.library.restapi.repository.BorrowRepository;
 
 import java.util.List;
 
@@ -14,15 +14,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StatsService {
 
-    private final LoanRepository loanRepository;
+    private final BorrowRepository borrowRepository;
 
     @Transactional(readOnly = true)
     public List<LoanByCategoryDTO> getLoansByCategory() {
-        return loanRepository.countLoansByCategory();
+        return borrowRepository.countLoansByCategory();
     }
 
     @Transactional(readOnly = true)
     public List<TopAuthorDTO> getTopAuthors(int limit) {
-        return loanRepository.findTopAuthors(PageRequest.of(0, limit));
+        return borrowRepository.findTopAuthors(PageRequest.of(0, limit));
     }
 }
