@@ -4,6 +4,10 @@ Mini-projet WS REST - MBDS 2025-2026
 Cette application est une API REST permettant de gérer une bibliothèque : livres, auteurs, catégories, utilisateurs et emprunts.  
 Elle illustre les concepts de CRUD, relations entre entités, authentification JWT, gestion des rôles, filtres de sécurité et documentation Swagger.
 
+## Membres du projet
+- RABARIJAONA Angoty Fitia - ETU001970
+- RASELISON Toky - ETU002048
+  
 ## Objectifs
 Ce projet a pour but de fournir une API REST complète pour la gestion d’une bibliothèque.  
 Il permet aux utilisateurs d’ajouter, modifier, supprimer et consulter les entités suivantes :
@@ -35,3 +39,18 @@ Deux endpoints plus complexes sont également implémentés :
    ```bash
    git clone https://github.com/AngotyFitia/library-management.git
    cd library-management
+   
+2. Lancer le projet :
+   mvn spring-boot:run
+   
+3. Accédez à l'API: 
+   http://localhost:8080
+
+## Documentation Swagger
+1. La documentation interactive est disponible à l’adresse suivante ::  http://localhost:9090/swagger-ui.html
+2. Une version déployée est accessible à : [source](https://library-management-7c4y.onrender.com)/swagger-ui.html
+
+## Collections Postman
+Vous pouvez télécharger et importer la collection Postman pour tester l’API :
+[Collection en local](postman/Library Management API - MBDS 2026.postman_collection_en_local.json)
+[Collection en ligne](postman/Library Management API - MBDS 2026.postman_collection_en_ligne.json)
