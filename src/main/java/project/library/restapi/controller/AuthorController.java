@@ -1,7 +1,6 @@
 package project.library.restapi.controller;
 
 import project.library.restapi.dto.books.AuthorDTO;
-import project.library.restapi.model.Author;
 import project.library.restapi.service.AuthorService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class AuthorController {
     private AuthorService service;
 
     @GetMapping
-    public List<Author> getAll() {
+    public List<AuthorDTO> getAll() {
         return service.findAll();
     }
 

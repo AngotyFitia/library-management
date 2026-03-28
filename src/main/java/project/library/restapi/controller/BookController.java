@@ -17,12 +17,12 @@ public class BookController {
     private BookService service;
 
     @GetMapping
-    public List<Book> getAll() {
+    public List<BookDTO> getAll() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public Book getById(@PathVariable Long id) {
+    public BookDTO getById(@PathVariable Long id) {
         return service.findById(id);
     }
 
