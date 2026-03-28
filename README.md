@@ -44,13 +44,14 @@ Deux endpoints plus complexes sont également implémentés :
    mvn spring-boot:run
    
 3. Accédez à l'API: 
-   http://localhost:8080
+   http://localhost:9090
 
 ## Documentation Swagger
 1. La documentation interactive est disponible à l’adresse suivante ::  http://localhost:9090/swagger-ui.html
-2. Une version déployée est accessible à : [source](https://library-management-7c4y.onrender.com)/swagger-ui.html
+2. Une version déployée est accessible à : [source](https://library-management-7c4y.onrender.com/swagger-ui.html)
 
 ## Collections Postman
 Vous pouvez télécharger et importer la collection Postman pour tester l’API :
-[Collection en local](postman/Library Management API - MBDS 2026.postman_collection_en_local.json)
-[Collection en ligne](postman/Library Management API - MBDS 2026.postman_collection_en_ligne.json)
+[Collection en local](https://github.com/AngotyFitia/library-management/raw/main/postman/Library%20Management%20API%20-%20MBDS%202026.postman_collection_en_local.json)
+[Collection en ligne](https://github.com/AngotyFitia/library-management/raw/main/postman/Library%20Management%20API%20-%20MBDS%202026.postman_collection_en_ligne.json)
+
