@@ -52,6 +52,7 @@ Deux endpoints plus complexes sont également implémentés :
 
 ## Collections Postman
 Vous pouvez télécharger et importer la collection Postman pour tester l’API :
-[Collection en local](https://github.com/AngotyFitia/library-management/raw/main/postman/Library%20Management%20API%20-%20MBDS%202026.postman_collection_en_local.json)
-[Collection en ligne](https://github.com/AngotyFitia/library-management/raw/main/postman/Library%20Management%20API%20-%20MBDS%202026.postman_collection_en_ligne.json)
+-  [Collection en local](https://github.com/AngotyFitia/library-management/raw/main/postman/Library%20Management%20API%20-%20MBDS%202026.postman_collection_en_local.json)
+-  [Collection en ligne](https://github.com/AngotyFitia/library-management/raw/main/postman/Library%20Management%20API%20-%20MBDS%202026.postman_collection_en_ligne.json)
+
 
