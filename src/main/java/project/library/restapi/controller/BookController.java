@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import jakarta.validation.Valid;
 import java.util.List;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/api/books")
+@Tag(name="Books", description="Admin and users have access")
 public class BookController {
     @Autowired
     private BookService service;

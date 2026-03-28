@@ -5,9 +5,12 @@ import project.library.restapi.model.User;
 import project.library.restapi.service.BorrowService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 
 @RestController
-@RequestMapping("/borrows")
+@RequestMapping("/api/borrows")
+@Tag(name="Borrows", description ="Borrows management - users only")
 public class BorrowController {
     @Autowired
     private BorrowService service;
