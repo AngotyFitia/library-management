@@ -1,6 +1,6 @@
 package project.library.restapi.controller;
 
-import project.library.restapi.model.Borrow;
+import project.library.restapi.dto.books.BorrowDTO;
 import project.library.restapi.model.User;
 import project.library.restapi.service.BorrowService;
 import org.springframework.web.bind.annotation.*;
@@ -15,15 +15,15 @@ public class BorrowController {
     @Autowired
     private BorrowService service;
 
-    @PostMapping("/{bookId}")
-    public Borrow borrowBook(@PathVariable Long bookId) {
+    @PostMapping("/{bookId}/{idUser}")
+    public BorrowDTO borrowBook(@PathVariable Long bookId, @PathVariable Long idUser) {
         User user = new User();
-        user.setId(1L);
-        return service.borrowBook(bookId, user);
+        user.setId(idUser);
+        return service.toDTO(service.borrowBook(bookId, user));
     }
 
     @PutMapping("/{id}/return")
-    public Borrow returnBook(@PathVariable Long id) {
-        return service.returnBook(id);
+    public BorrowDTO returnBook(@PathVariable Long id) {
+        return service.toDTO(service.returnBook(id));
     }
 }

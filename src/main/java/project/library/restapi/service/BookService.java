@@ -9,6 +9,7 @@ import project.library.restapi.repository.BookRepository;
 import project.library.restapi.repository.CategoryRepository;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
@@ -26,12 +27,15 @@ public class BookService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public List<Book> findAll() {
-        return bookRepository.findAll();
+    @Transactional(readOnly = true)
+    public List<BookDTO> findAll() {
+        return bookRepository.findAll().stream().map(this::toDTO).toList();
     }
 
-    public Book findById(Long id) {
-        return bookRepository.findById(id).orElseThrow();
+    @Transactional(readOnly = true)
+    public BookDTO findById(Long id) {
+        Book book = bookRepository.findById(id).orElseThrow();
+        return toDTO(book);
     }
 
     public BookDTO save(BookDTO dto) {

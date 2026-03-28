@@ -2,6 +2,7 @@ package project.library.restapi.dto.books;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import java.util.List;
 
 @Data
 public class AuthorDTO {
@@ -16,6 +17,8 @@ public class AuthorDTO {
     @NotBlank
     private String biography;
 
+    private List<String> bookTitles;
+
     public String getLastName() {
         return lastName;
     }
@@ -25,6 +28,10 @@ public class AuthorDTO {
     public String getBiography() {
         return biography;
     }
+    public List<String> getBookTitles(){
+        return bookTitles;
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -35,4 +42,8 @@ public class AuthorDTO {
     public void setBiography(String biography) {
         this.biography = biography;
     }
+    public void setBookTitles(List<String> bookTitles){
+        this.bookTitles=bookTitles;
+    }
+
 }

@@ -1,7 +1,6 @@
 package project.library.restapi.controller;
 
 import project.library.restapi.dto.books.CategoryDTO;
-import project.library.restapi.model.Category;
 import project.library.restapi.service.CategoryService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ public class CategoryController {
     private CategoryService service;
 
     @GetMapping
-    public List<Category> getAll() {
+    public List<CategoryDTO> getAll() {
         return service.findAll();
     }
 
