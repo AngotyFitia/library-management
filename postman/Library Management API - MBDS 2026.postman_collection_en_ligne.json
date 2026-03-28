@@ -1,0 +1,576 @@
+{
+  "info": {
+    "_postman_id": "65c2c120-a552-4d49-b9e1-7db5b477d44e",
+    "name": "Library Management API - MBDS 2026",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53402848",
+    "_collection_link": "https://go.postman.co/collection/53402848-65c2c120-a552-4d49-b9e1-7db5b477d44e?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Registration - Admin Account",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"LIBRARY\",\r\n    \"email\": \"admin-library@yahoo.fr\",\r\n    \"password\": \"admin-library-123\",\r\n    \"role\": \"ADMIN\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/auth/register",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Registration - User Account",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"RABARIJAONA\",\r\n    \"email\": \"angoty.rabari@gmail.com\",\r\n    \"password\": \"angoty\",\r\n    \"role\": \"USER\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/auth/register",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login - Admin",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4tbGlicmFyeUB5YWhvby5mciIsImlhdCI6MTc3NDY5NDcxMiwiZXhwIjoxNzc0NzgxMTEyfQ.ODOYFBWgW-0a5w9X5H23xZ8lgYwgkYfmji-XNf3KBTVETJ2IronIRBjK4-X3TY_N",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"admin-library@yahoo.fr\",\n    \"password\": \"admin-library-123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/auth/login",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login - User",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"angoty.rabari@gmail.com\",\r\n    \"password\": \"angoty\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/auth/login",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Authors - Creation",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4tbGlicmFyeUB5YWhvby5mciIsImlhdCI6MTc3NDY5OTExNSwiZXhwIjoxNzc0Nzg1NTE1fQ.54Dezm3twSYFSnD5LPEHLE25bgLhh3lizhFNvJKKEFR6RjayZnQwXAdX9rhpMqwr",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"lastName\": \"VICTOR\",\r\n    \"firstName\": \"Hugo\",\r\n    \"biography\": \"Victor Hugo (1802-1885) est un géant de la littérature française et une figure politique majeure du XIXe siècle. Romantique influent, il a excellé en poésie, théâtre et roman (Notre-Dame de Paris, Les Misérables). Engagé pour la république, la justice sociale et contre la peine de mort, il a vécu 20 ans en exil (1851-1870) sous Napoléon III, avant des funérailles nationales grandioses\"\r\n\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/authors",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "authors"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Authors - Get all authors",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4tbGlicmFyeUB5YWhvby5mciIsImlhdCI6MTc3NDY5OTExNSwiZXhwIjoxNzc0Nzg1NTE1fQ.54Dezm3twSYFSnD5LPEHLE25bgLhh3lizhFNvJKKEFR6RjayZnQwXAdX9rhpMqwr",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/authors",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "authors"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Categories - Creation",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4tbGlicmFyeUB5YWhvby5mciIsImlhdCI6MTc3NDY5OTExNSwiZXhwIjoxNzc0Nzg1NTE1fQ.54Dezm3twSYFSnD5LPEHLE25bgLhh3lizhFNvJKKEFR6RjayZnQwXAdX9rhpMqwr",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Roman\",\r\n    \"description\": \"Livres de fiction qui racontent des histoires imaginaires, souvent centrées sur des personnages et des intrigues développées.\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/categories",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Categories - Get all categories",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4tbGlicmFyeUB5YWhvby5mciIsImlhdCI6MTc3NDY5OTExNSwiZXhwIjoxNzc0Nzg1NTE1fQ.54Dezm3twSYFSnD5LPEHLE25bgLhh3lizhFNvJKKEFR6RjayZnQwXAdX9rhpMqwr",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/categories",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Books - Creation",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4tbGlicmFyeUB5YWhvby5mciIsImlhdCI6MTc3NDY5OTExNSwiZXhwIjoxNzc0Nzg1NTE1fQ.54Dezm3twSYFSnD5LPEHLE25bgLhh3lizhFNvJKKEFR6RjayZnQwXAdX9rhpMqwr",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Clean Code\",\r\n  \"isbn\": \"9780132350884\",\r\n  \"publicationDate\": \"2008-08-01\",\r\n  \"available\": true,\r\n  \"authorId\": 4,\r\n  \"categoryIds\": [3, 4]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/books",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "books"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Books - Get all books",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4tbGlicmFyeUB5YWhvby5mciIsImlhdCI6MTc3NDY5OTExNSwiZXhwIjoxNzc0Nzg1NTE1fQ.54Dezm3twSYFSnD5LPEHLE25bgLhh3lizhFNvJKKEFR6RjayZnQwXAdX9rhpMqwr",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/books",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "books"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Books - Get one book",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4tbGlicmFyeUB5YWhvby5mciIsImlhdCI6MTc3NDY5OTExNSwiZXhwIjoxNzc0Nzg1NTE1fQ.54Dezm3twSYFSnD5LPEHLE25bgLhh3lizhFNvJKKEFR6RjayZnQwXAdX9rhpMqwr",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/books/5",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "books",
+            "5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Books - Delete one book",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4tbGlicmFyeUB5YWhvby5mciIsImlhdCI6MTc3NDY5OTExNSwiZXhwIjoxNzc0Nzg1NTE1fQ.54Dezm3twSYFSnD5LPEHLE25bgLhh3lizhFNvJKKEFR6RjayZnQwXAdX9rhpMqwr",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/books/5",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "books",
+            "5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Borrowings - Borrow a book",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4tbGlicmFyeUB5YWhvby5mciIsImlhdCI6MTc3NDY5OTExNSwiZXhwIjoxNzc0Nzg1NTE1fQ.54Dezm3twSYFSnD5LPEHLE25bgLhh3lizhFNvJKKEFR6RjayZnQwXAdX9rhpMqwr",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/borrows/3/1",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "borrows",
+            "3",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Borrowings - Return a book",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4tbGlicmFyeUB5YWhvby5mciIsImlhdCI6MTc3NDY5OTExNSwiZXhwIjoxNzc0Nzg1NTE1fQ.54Dezm3twSYFSnD5LPEHLE25bgLhh3lizhFNvJKKEFR6RjayZnQwXAdX9rhpMqwr",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/borrows/3/return",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "borrows",
+            "3",
+            "return"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Stat - Emprunts par catégorie",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4tbGlicmFyeUB5YWhvby5mciIsImlhdCI6MTc3NDY5OTExNSwiZXhwIjoxNzc0Nzg1NTE1fQ.54Dezm3twSYFSnD5LPEHLE25bgLhh3lizhFNvJKKEFR6RjayZnQwXAdX9rhpMqwr",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/stats/loans-by-category",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "stats",
+            "loans-by-category"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Stat - Auteurs les plus empruntés",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4tbGlicmFyeUB5YWhvby5mciIsImlhdCI6MTc3NDY5OTExNSwiZXhwIjoxNzc0Nzg1NTE1fQ.54Dezm3twSYFSnD5LPEHLE25bgLhh3lizhFNvJKKEFR6RjayZnQwXAdX9rhpMqwr",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://library-management-7c4y.onrender.com/api/stats/top-authors",
+          "protocol": "https",
+          "host": [
+            "library-management-7c4y",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "stats",
+            "top-authors"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
